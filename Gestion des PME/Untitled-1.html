@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Comptabilité des PME | Livre professionnel 2e édition</title>
+    <!-- Google Fonts & modern reset -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fefcf5;
+            color: #1e2a2f;
+            scroll-behavior: smooth;
+            line-height: 1.5;
+        }
+
+        /* Couleurs inspirées de l'éducation & finance : élégant, professionnel, chaleureux */
+        :root {
+            --navy-deep: #0b2b2f;
+            --gold-accent: #c69c2d;
+            --gold-light: #e0b861;
+            --sand-bg: #faf7ef;
+            --card-white: #ffffff;
+            --text-dark: #1e2a2f;
+            --text-muted: #5a6e6f;
+            --border-soft: #e5dfd0;
+            --shadow-card: 0 20px 35px -12px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0,0,0,0.02);
+            --shadow-hover: 0 25px 40px -12px rgba(0, 0, 0, 0.15);
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 28px;
+        }
+
+        /* Header */
+        .top-bar {
+            background: var(--navy-deep);
+            color: white;
+            padding: 0.9rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .nav-flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+        }
+        .logo span {
+            color: var(--gold-accent);
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        .nav-links a {
+            color: #eef3f0;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+        .nav-links a:hover {
+            color: var(--gold-light);
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: var(--navy-deep);
+            color: white;
+            border: none;
+            padding: 0.9rem 2rem;
+            font-weight: 700;
+            font-size: 1rem;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        .btn-primary:hover {
+            background: #15454b;
+            transform: translateY(-2px);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--navy-deep);
+            color: var(--navy-deep);
+            padding: 0.7rem 1.8rem;
+            font-weight: 600;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-outline:hover {
+            background: var(--navy-deep);
+            color: white;
+        }
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+            border: none;
+            padding: 0.7rem 1.6rem;
+            border-radius: 60px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+            text-decoration: none;
+        }
+        .btn-whatsapp:hover {
+            background-color: #1da959;
+            transform: scale(1.02);
+        }
+
+        /* Hero section avec livre personnalisé */
+        .hero {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 3rem;
+            padding: 3rem 0 2rem;
+        }
+        .hero-text {
+            flex: 1.2;
+        }
+        .hero-text .edition-badge {
+            background: var(--gold-light);
+            color: #1e2a2f;
+            display: inline-block;
+            padding: 0.2rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+        }
+        .hero-text h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 0.8rem;
+            color: var(--navy-deep);
+        }
+        .hero-text h1 i {
+            font-weight: 500;
+            color: #c69c2d;
+        }
+        .authors {
+            font-weight: 500;
+            color: #3e5a5e;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        .description {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin: 1rem 0;
+        }
+        .price-large {
+            font-size: 2.3rem;
+            font-weight: 800;
+            color: var(--navy-deep);
+            background: #f0ede4;
+            display: inline-block;
+            padding: 0.2rem 1.2rem;
+            border-radius: 50px;
+            margin: 0.8rem 0;
+        }
+        .price-large small {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+        /* Couverture personnalisée avec votre image "livre pme.jpg" */
+        .book-card {
+            background: #fff8ed;
+            border-radius: 28px;
+            padding: 1.2rem 1.2rem 1.5rem;
+            box-shadow: var(--shadow-card);
+            transition: all 0.3s ease;
+            max-width: 320px;
+            text-align: center;
+            border: 1px solid #f0e2cc;
+        }
+        .book-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+        .book-cover-img {
+            width: 100%;
+            border-radius: 18px;
+            background: #fcf9f0;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            display: block;
+        }
+        .book-meta {
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: #6f5b3a;
+            font-weight: 500;
+        }
+
+        /* sections */
+        .section {
+            padding: 3.5rem 0;
+            border-bottom: 1px solid var(--border-soft);
+        }
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: var(--navy-deep);
+        }
+        .features-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+        .feature-card {
+            background: var(--card-white);
+            padding: 1.8rem;
+            border-radius: 28px;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.03);
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            border: 1px solid #e9e0ce;
+            transition: 0.2s;
+        }
+        .feature-card h3 {
+            margin-top: 0.8rem;
+            margin-bottom: 0.4rem;
+        }
+
+        /* Payment methods */
+        .payment-methods-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.2rem;
+            margin: 2rem 0;
+        }
+        .pm-item {
+            background: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 60px;
+            font-weight: 600;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid #e1d9ca;
+        }
+
+        /* Order form */
+        .order-card {
+            background: var(--card-white);
+            max-width: 620px;
+            margin: 0 auto;
+            padding: 2rem 2rem 2.2rem;
+            border-radius: 36px;
+            box-shadow: var(--shadow-card);
+            border: 1px solid var(--border-soft);
+        }
+        .form-group {
+            margin-bottom: 1.3rem;
+        }
+        label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.4rem;
+            color: #1e2a2f;
+        }
+        input, select {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            border-radius: 28px;
+            border: 1px solid #d4ccbb;
+            font-family: inherit;
+            background: #fffcf5;
+        }
+        .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 0.8rem 0 0.5rem;
+        }
+        .radio-group label {
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .payment-note {
+            background: #f8f3e8;
+            padding: 0.9rem;
+            border-radius: 28px;
+            font-size: 0.85rem;
+            margin-top: 1rem;
+            text-align: center;
+        }
+        .whatsapp-float {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        .toast-msg {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e2a2f;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 60px;
+            font-weight: 500;
+            z-index: 1000;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+            animation: fadeUp 0.25s ease;
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+        footer {
+            background: var(--navy-deep);
+            color: #ccdfdb;
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.85rem;
+        }
+        @media (max-width: 750px) {
+            .hero-text h1 { font-size: 2rem; }
+            .nav-flex { flex-direction: column; }
+            .nav-links { gap: 1.2rem; }
+            .container { padding: 0 20px; }
+        }
+        .btn-wa-small {
+            background: #25D366;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            border-radius: 40px;
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="top-bar">
+    <div class="container nav-flex">
+        <div class="logo">Éditions <span>Chenière</span></div>
+        <div class="nav-links">
+            <a href="#book">Le Livre</a>
+            <a href="#payment">Paiement</a>
+            <a href="#order">Commander</a>
+            <a href="#contact">Aide</a>
+        </div>
+    </div>
+</nav>
+
+<main>
+    <div class="container">
+        <!-- Hero section avec votre image livre pme.jpg -->
+        <div class="hero" id="book">
+            <div class="hero-text">
+                <div class="edition-badge">🇭🇹 2e édition • Nouvelle version augmentée</div>
+                <h1>La comptabilité et les <br><i>PME</i> <span style="color:#c69c2d;">— Volume 2</span></h1>
+                <div class="authors">Daniel McMahon • Jocelyne Gosselin • Sylvie Deslauriers</div>
+                <p class="description">L'ouvrage de référence pour maîtriser la comptabilité des petites et moyennes entreprises. Cas pratiques, exercices et normes adaptées au contexte haïtien et international.</p>
+                <div class="price-large">1 000 Gdes <small>HTG • version numérique + accès bonus</small></div>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin: 1rem 0;">
+                    <button class="btn-primary" id="scrollToBuy">📘 Acheter maintenant →</button>
+                    <button class="btn-outline" id="previewBtn">📖 Feuilleter un extrait</button>
+                </div>
+                <!-- Deux boutons WhatsApp rapides dans le hero -->
+                <div style="display: flex; gap: 1rem; margin-top: 1.2rem;">
+                    <a href="https://wa.me/50938596309?text=Bonjour%2C%20je%20souhaite%20des%20informations%20sur%20le%20livre%20Comptabilit%C3%A9%20des%20PME" target="_blank" class="btn-whatsapp">📱 WhatsApp +509 38 596 309</a>
+                    <a href="https://wa.me/50947595105?text=Bonjour%2C%20j%27ai%20une%20question%20sur%20le%20livre%20et%20le%20paiement" target="_blank" class="btn-whatsapp">📱 WhatsApp +509 47 595 105</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="book-card">
+                    <!-- Utilisation de votre image locale "livre pme.jpg" -->
+                    <img class="book-cover-img" src="livre pme.jpg" alt="Couverture Comptabilité des PME - livre pme.jpg">
+                    <div class="book-meta">📘 2e édition | Plus de 450 pages | Accès web inclus</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Points clés -->
+        <div class="section">
+            <h2 class="section-title">Pourquoi ce livre transforme votre pratique</h2>
+            <div class="features-grid">
+                <div class="feature-card">📚 <h3>Méthode PME</h3><p>Approche concrète & exercices corrigés</p></div>
+                <div class="feature-card">🧮 <h3>Outils digitaux</h3><p>Modèles Excel & tableaux de bord</p></div>
+                <div class="feature-card">🏆 <h3>Cas haïtiens</h3><p>Adaptation aux entreprises locales</p></div>
+                <div class="feature-card">📖 <h3>Référence universitaire</h3><p>Reconnu par les formateurs</p></div>
+            </div>
+        </div>
+
+        <!-- Moyens de paiement -->
+        <div class="section" id="payment">
+            <h2 class="section-title">Paiement 100% sécurisé</h2>
+            <div class="payment-methods-list">
+                <div class="pm-item">💳 PayPal</div>
+                <div class="pm-item">₿ Crypto (BTC, ETH, USDT)</div>
+                <div class="pm-item">📱 MonCash</div>
+                <div class="pm-item">💵 Natcash</div>
+                <div class="pm-item">🏦 Virement local</div>
+            </div>
+            <p style="text-align: center; color: #4f6b6e;">Achetez en toute confiance. Livraison instantanée par email après validation du paiement.</p>
+        </div>
+
+        <!-- Formulaire de commande -->
+        <div class="section" id="order">
+            <h2 class="section-title">Finaliser votre commande</h2>
+            <div class="order-card">
+                <h3 style="margin-bottom: 0.5rem;">📘 Comptabilité des PME – Volume 2 (e-book + fichiers)</h3>
+                <p><strong>Prix unitaire : 1 000 gourdes (HTG)</strong> — Accès immédiat en format PDF et ressources.</p>
+                <hr style="margin: 1rem 0;">
+
+                <form id="orderForm">
+                    <div class="form-group">
+                        <label>Nom complet</label>
+                        <input type="text" id="fullName" placeholder="Ex: Marie Pierre" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Adresse e-mail</label>
+                        <input type="email" id="email" placeholder="client@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Choisissez votre moyen de paiement</label>
+                        <div class="radio-group" id="paymentRadios">
+                            <label><input type="radio" name="paymentMethod" value="PayPal" checked> 💳 PayPal</label>
+                            <label><input type="radio" name="paymentMethod" value="Crypto"> ₿ Crypto (BTC/ETH/USDT)</label>
+                            <label><input type="radio" name="paymentMethod" value="MonCash"> 📱 MonCash</label>
+                            <label><input type="radio" name="paymentMethod" value="Natcash"> 💵 Natcash</label>
+                        </div>
+                    </div>
+                    <div class="payment-note" id="paymentMethodNote">
+                        🔐 PayPal: paiement par carte ou compte PayPal, rapide et sécurisé.
+                    </div>
+                    <button type="submit" class="btn-primary" style="width:100%; justify-content:center; margin: 1rem 0 0.5rem;">✅ Confirmer l'achat (1 000 Gdes)</button>
+                </form>
+                <div class="whatsapp-float" id="contact">
+                    <a href="https://wa.me/50938596309?text=Bonjour%2C%20j%27ai%20besoin%20d%27aide%20pour%20ma%20commande%20de%20livre%20Comptabilit%C3%A9%20PME" target="_blank" class="btn-wa-small">💬 Support +509 38 596 309</a>
+                    <a href="https://wa.me/50947595105?text=Bonjour%2C%20question%20rapide%20sur%20le%20paiement%20du%20livre" target="_blank" class="btn-wa-small">💬 Assistance +509 47 595 105</a>
+                </div>
+                <p style="font-size:0.7rem; text-align:center; margin-top:1rem;">Après validation, vous recevrez un email avec le lien de téléchargement. Pour MonCash/Natcash, les instructions vous seront envoyées.</p>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <p>© 2026 Éditions Chenelière Éducation — Tous droits réservés. Comptabilité des PME, 2e édition.</p>
+    <p style="margin-top: 0.4rem;">Contact commercial: +509 38596309 / +509 47595105 | Livre disponible en version numérique</p>
+</footer>
+
+<script>
+    (function() {
+        // Toast helper
+        function showToast(message, isError = false) {
+            let existing = document.querySelector('.toast-msg');
+            if(existing) existing.remove();
+            const toast = document.createElement('div');
+            toast.className = 'toast-msg';
+            toast.style.backgroundColor = isError ? '#b13e3e' : '#0b2b2f';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 300);
+            }, 4500);
+        }
+
+        // Scroll to order
+        const scrollBtn = document.getElementById('scrollToBuy');
+        if(scrollBtn) {
+            scrollBtn.addEventListener('click', () => {
+                document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
+            });
+        }
+
+        // Preview simulation
+        const preview = document.getElementById('previewBtn');
+        if(preview) {
+            preview.addEventListener('click', () => {
+                showToast("📖 Extrait du livre (premier chapitre) : Les bases de la comptabilité des PME — envoyé par email sur demande. Contactez le support pour recevoir un aperçu complet.");
+            });
+        }
+
+        // update payment note dynamically
+        const radios = document.querySelectorAll('input[name="paymentMethod"]');
+        const noteDiv = document.getElementById('paymentMethodNote');
+        function updateNoteByMethod() {
+            const selected = document.querySelector('input[name="paymentMethod"]:checked');
+            if(selected) {
+                const val = selected.value;
+                if(val === 'PayPal') noteDiv.innerHTML = '💳 PayPal: Redirection vers la plateforme sécurisée. Accepte cartes Visa/Mastercard.';
+                else if(val === 'Crypto') noteDiv.innerHTML = '₿ Crypto: Après la commande, vous recevrez l\'adresse wallet (BTC/ETH/USDT). Paiement confirmé sous quelques minutes.';
+                else if(val === 'MonCash') noteDiv.innerHTML = '📱 MonCash: Vous recevrez une demande de paiement sur votre téléphone. Validez dans l\'application MonCash.';
+                else if(val === 'Natcash') noteDiv.innerHTML = '💵 Natcash: Paiement mobile via Natcash. Les instructions seront envoyées par SMS après la commande.';
+                else noteDiv.innerHTML = 'Paiement sécurisé via le moyen sélectionné.';
+            }
+        }
+        radios.forEach(r => r.addEventListener('change', updateNoteByMethod));
+        updateNoteByMethod();
+
+        // Form submission (simulation de traitement avec redirections fictives mais réalistes)
+        const form = document.getElementById('orderForm');
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const fullName = document.getElementById('fullName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const selectedPayment = document.querySelector('input[name="paymentMethod"]:checked');
+            
+            if(!fullName || !email) {
+                showToast("Veuillez entrer votre nom complet et votre adresse email.", true);
+                return;
+            }
+            if(!email.includes('@') || !email.includes('.')) {
+                showToast("Email invalide. Ex: nom@domaine.com", true);
+                return;
+            }
+            if(!selectedPayment) {
+                showToast("Choisissez un moyen de paiement.", true);
+                return;
+            }
+
+            const method = selectedPayment.value;
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerText;
+            submitBtn.disabled = true;
+            submitBtn.innerText = "Traitement en cours... ⏳";
+
+            // Simulate processing / gateway
+            await new Promise(resolve => setTimeout(resolve, 1200));
+            
+            let successMsg = "";
+            let isError = false;
+            // Logique de démonstration: tous les paiements sont "simulés" avec succès mais avec des instructions.
+            if(method === 'PayPal') {
+                successMsg = `✅ Merci ${fullName} ! Redirection vers PayPal pour finaliser le paiement de 1 000 Gdes. Un email de confirmation vous sera envoyé à ${email}. (Démo fonctionnelle)`;
+                showToast(successMsg);
+                // Simulate redirection (in real life redirect to PayPal)
+                console.log(`[PayPal] Commande pour ${fullName}, email: ${email}`);
+            } 
+            else if (method === 'Crypto') {
+                successMsg = `₿ Commande reçue ! Un email à ${email} contient l'adresse wallet pour payer 1 000 Gdes en équivalent crypto. Après réception, le livre sera envoyé.`;
+                showToast(successMsg);
+            }
+            else if (method === 'MonCash') {
+                successMsg = `📱 Demande MonCash générée. Vérifiez votre téléphone (numéro lié à MonCash). Paiement de 1 000 Gdes à valider. Livraison immédiate après confirmation.`;
+                showToast(successMsg);
+            }
+            else if (method === 'Natcash') {
+                successMsg = `💵 Paiement via Natcash : vous allez recevoir un lien sécurisé. Règlement de 1 000 Gdes. Notre équipe valide sous 5 minutes.`;
+                showToast(successMsg);
+            }
+            else {
+                successMsg = `Commande enregistrée ! Un email a été envoyé à ${email} avec les instructions de paiement (${method}).`;
+                showToast(successMsg);
+            }
+
+            // Réinitialiser partiellement le formulaire ou le garder? On efface nom/email pour la prochaine démo.
+            document.getElementById('fullName').value = '';
+            document.getElementById('email').value = '';
+            // reset radio to PayPal
+            const paypalRadio = document.querySelector('input[name="paymentMethod"][value="PayPal"]');
+            if(paypalRadio) paypalRadio.checked = true;
+            updateNoteByMethod();
+            
+            submitBtn.disabled = false;
+            submitBtn.innerText = originalText;
+            
+            // simulation d'envoi email (console)
+            console.log(`[EMAIL SIMULATION] À: ${email} | Sujet: Votre commande "Comptabilité des PME" - Paiement via ${method}`);
+        });
+    })();
+</script>
+</body>
+</html>
